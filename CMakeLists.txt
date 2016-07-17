@@ -17,11 +17,15 @@ include_directories(${LIB_DIRS}
 
 # collect source-files
 set(LIB_SRCS
-	src/lib/rf.c	
+	src/lib/rf_module.c
+	src/lib/rf_module.h
+	src/lib/rf_default_simple_rx.c
+	src/lib/rf_default_simple_tx.c	
 	)
 
 # define targets
 add_library(rfpi SHARED ${LIB_SRCS})
 
 add_executable(tmp src/bin/tmp.c)
+target_link_libraries(tmp rfpi)
 target_link_libraries(tmp ${WIRINGPI_LIBRARIES})
